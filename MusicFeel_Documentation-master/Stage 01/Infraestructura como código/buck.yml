@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A simple CloudFormation template
+Resources:
+    Bucket:
+        Type: AWS::S3::Bucket
+        Properties:
+            BucketName: prueba9999 # use your own unique name
+            AccessControl: Private
+          

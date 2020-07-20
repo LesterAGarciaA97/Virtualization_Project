@@ -1,0 +1,11 @@
+https://github.com/LesterAGarciaA97/MusicFeel_CRUD
+
+https://github.com/LesterAGarciaA97/MusicFeel_SpotifyAPI
+
+https://github.com/LesterAGarciaA97/MusicFeel_RekognitionAPI
+
+https://github.com/LesterAGarciaA97/MusicFeel_MySQLDB
+
+https://github.com/LesterAGarciaA97/MusicFeel_CloudFormation
+
+https://github.com/LesterAGarciaA97/MusicFeel_Documentation

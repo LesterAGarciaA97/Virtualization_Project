@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+    <body background="BLUE">
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Login</a>
+
+            <ul>
+                <li >
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/login">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="/register">
+                        Register
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class = "container mt-5">
+            <form action = "/auth/login" method = "POST">
+                <div class = "col-md-5 offset-md-3 card">
+                    <div class = "card-header">
+                        LOGIN
+                    </div>
+                    <div class = "card-body">
+ 
+                        <div class = "form-group">
+                            <label for="username">USERNAME: </label>
+                            <input type="text" class = "form-control" id="txtusername" name="txtusername">
+                        </div>
+
+                        <div class = "form-group">
+                            <label for="password">PASSWORD: </label>
+                            <input type="password" class = "form-control" id="txtpassword" name="txtpassword">
+                        </div>
+
+                        <button type="submit" class="btn btn-dark">LOGIN</button>
+                    </div>      
+                </div>
+            </form>
+            {{#if message}}
+                <h4 class = "alert alert-danger mt-4">{{message}}</h4>
+            {{/if}}
+        </div>
+    </body>
+</html>

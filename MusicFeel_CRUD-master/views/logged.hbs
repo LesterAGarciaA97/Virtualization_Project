@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+</head>
+
+<body background="BLUE">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">USER PLATFORM</a>
+    </nav>
+
+
+    <tr>
+        <th class="thead-light">
+            <div class="container mt-5">
+                <form action="#">
+                    <div class="col-md-5 offset-md-3 card">
+                        <div class="col text-center">
+                            <h1 class="font-weight-bold">Recomendación</h1>
+                        </div>
+                        <br>
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-dark" onclick="ConseguirCancion()">Recomendación
+                                aleatoria</button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col text-center">
+                            <iframe id="myframe" src="" style="visibility:hidden;" width="300" height="380"
+                                frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th class="thead-light">
+            <div class="col text-center">
+                <br>
+                <br>
+                <div class="col-md-5 offset-md-3 card">
+                    <div class="col text-center">
+                        <h1>Subir foto</h1>
+                    </div>
+                    <div class="col text-left">
+                        <form action="/auth/files" method="POST" enctype="multipart/form-data">
+                            <br>
+                            <div class="col text-center">
+                                <input type="file" name="imagen" id="imagen">
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col text-center">
+                                <input type="submit" value="Subir imagen">
+                            </div>
+                            <input style="visibility:hidden" type="text" class="form-control" id="txtnombreimagen"
+                                value={{nombreArchivo}} name="txtnombreimagen" disabled>
+                        </form>
+                    </div>
+                    <form action="/auth/InserMood" method="POST">
+                        <div class="col text-center">
+                            <div class="col text-center">
+                                <br>
+                                <h2 class="font-weight-bold">Tu mood es</h2>
+                            </div>
+                            <br>
+                            <div class="col text-center">
+                                <input type="text" class="form-control" id="txtMyMood" name="txtMyMood" disabled>
+                            </div>
+                            <br>
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-dark" onclick="ConseguirMood()">Obtener tu
+                                    mood</button>
+                            </div>
+                            <br>
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-dark" onclick="ConseguirCancionM()">Obtener una
+                                    canción
+                                    para tu mood</button>
+                                <br>
+                                <div class="col text-center">
+                                    <br>
+                                    <iframe id="myframeM" src="" style="visibility:hidden;" width="300" height="380"
+                                        frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </form>
+            </div>
+            </div>
+        </th>
+    </tr>
+
+    <tr>
+        <th class="thead-light">
+            <div class="col text-center">
+                <br>
+                <br>
+                <form action="/auth/spotifyApi" method="POST">
+                    <div class="col-md-5 offset-md-3 card">
+                        <br>
+                        <br>
+                        <div class="col text-center">
+                            <h2 class="font-weight-bold">Conexión con Spotify</h2>
+                        </div>
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-dark">Iniciar con Spotify</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </th>
+    </tr>
+
+    <script>
+        const ConseguirMood = () => {
+            //Axel Easter Egg by Steven Villatoro
+            console.log("te amo AXEL <3");
+
+            var nombreFoto = document.getElementById("txtnombreimagen").value;
+            console.log(nombreFoto);
+
+            $.ajax({
+                url: "http://ec2-35-172-193-27.compute-1.amazonaws.com:9000",
+                type: "POST",
+                data: { nombre: nombreFoto }
+
+
+            }).done(function (data) {
+                document.getElementById("txtMyMood").value = data;
+            })
+        }
+
+        const ConseguirCancion = () => {
+            var random = Math.floor((Math.random() * 10) + 1);
+            console.log(random);
+            if (random == 1) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DWTMcSlgDhjk8";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+
+            else if (random == 2) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DX905zIRtblN3";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+
+            else if (random == 3) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DX6ThddIjWuGT";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+            else if (random == 4) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1E4CWDuYF7GiUo";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+            else if (random == 5) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1E8UlX7KFGjewp";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+            else if (random == 6) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DWWTS5vSPG86u";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+            else if (random == 7) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DX59HcpGmPXYR";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+            else if (random == 8) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DWZufbpO1g3tw";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+            else if (random == 9) {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DXbkKnGZHv1kf";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+            else {
+                document.getElementById("myframe").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DX3omIq8ziEt6";
+                document.getElementById("myframe").style.visibility = 'visible'
+            }
+        }
+        const ConseguirCancionM = () => {
+            var mood = document.getElementById("txtMyMood").value;
+            if (mood == "SAD") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DWT0qByOJYmmJ";
+                document.getElementById("myframeM").style.visibility = 'visible'
+            }
+            else if (mood == "FEAR") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/6UPLIehorkK5us3wNY1Kld";
+                document.getElementById("myframeM").style.visibility = 'visible'
+            }
+            else if (mood == "CONFUSED") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/1P8iyYihWGYwv5NAh1UP8O";
+                document.getElementById("myframeM").style.visibility = 'visible'
+            }
+            else if (mood == "CALM") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DX2UgsUIg75Vg";
+                document.getElementById("myframeM").style.visibility = 'visible'
+            }
+            else if (mood == "DISGUSTED") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/67Es9q5yk1s9EKcjBnq7Jy";
+                document.getElementById("myframeM").style.visibility = 'visible'
+            }
+            else if (mood == "SURPRISED") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/1MwmeDMzeJnJrRJXVVHqLV";
+                document.getElementById("myframeM").style.visibility = 'visible'
+            }
+            else if (mood == "ANGRY") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DX3YSRoSdA634";
+                document.getElementById("myframeM").style.visibility = 'visible'
+            }
+            else if (mood == "HAPPY") {
+                document.getElementById("myframeM").src = "https://open.spotify.com/embed/playlist/37i9dQZF1DXc0kiEm1shcT";
+                document.getElementById("myframeM").style.visibility = 'visible'
+
+            }
+            else {
+                Console.log("Error al agarrar el mood, Sorry :(");
+            }
+        }
+    </script>
+</body>
+
+</html>

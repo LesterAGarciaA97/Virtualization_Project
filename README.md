@@ -1,2 +1,2 @@
 # Virtualization
-Virtualization course - 2020
+Virtualization course project - 2020
